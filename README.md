@@ -4,7 +4,7 @@ we are fixing this broken zelda game from mr. P
 
 Things we want to add:
 - Title screen (Janya)
-- Story opening scene about mr. P
+- Story opening scene about mr. P - Script
 - Moving npc opponents (Amrit)
 - Health (Ria)
 - Sound effects (Stella)
