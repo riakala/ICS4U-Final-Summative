@@ -13,3 +13,9 @@ Things we want to add:
 
 
 https://www.buzzfeed.com/angelicaamartinez/soul-aesthetic-personality-quiz
+
+
+
+https://www.reddit.com/r/PixelArt/comments/cjiftq/my_first_post_go_easy_on_me_please_but_this_is_my/
+^^^^^^^^^^^^^^^^
+CLIPART FOR JANYA 
