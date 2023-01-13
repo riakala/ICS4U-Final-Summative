@@ -12,8 +12,28 @@ public class Candle extends Actor
      * Act - do whatever the Candle wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    private int spawnTimer;
+    private int rotation = 0;
+ 
+    private void checkForSpawning() // call from act method
+    {
+        
+        spawnTimer = (spawnTimer+1)%180; // repeat every 3 seconds (about)
+        if (spawnTimer == 0) // at each timer reset
+        {
+        rotation += 90;
+        setRotation(rotation);
+        }
+}
+    
     public void act()
     {
+        int speed = 1;
+        checkForSpawning();
+           
         // Add your action code here.
+        move(speed);
+
     }
 }
