@@ -5,12 +5,11 @@ public class RandomlyGeneratingDungeon extends World
 {   
     /**
      * Constructor for objects of class RandomlyGeneratingDungeon.
-     * 
      */
-    public RandomlyGeneratingDungeon()
-    {    
+    public RandomlyGeneratingDungeon() {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(680, 480, 1, false); 
+        super(680, 480, 1, false);
+        // adds objects with x and y position
         addObject(new Link(),getWidth()/2,getHeight()/2+20);
         addObject(new FadeOverlay(),getWidth()/2,getHeight()/2);
         addObject(new Wall(getWidth()*2,40),getWidth(),20);
@@ -22,13 +21,21 @@ public class RandomlyGeneratingDungeon extends World
     }
     Class[] all = {Wall.class,Key.class,Block.class,Lava.class,Water.class};
     public void scroll(String direction){
-        int v=0;
-        int h=0;
-        if (direction.equals("left"))h=getWidth();
-        if (direction.equals("right"))h=-getWidth();
-        if (direction.equals("up"))v=getHeight();
-        if (direction.equals("down"))v=-getHeight();
-        int a=0;
+        int v = 0;
+        int h = 0;
+        if (direction.equals("left")) {
+            h = getWidth();
+        }
+        if (direction.equals("right")) {
+            h = -getWidth();
+        }
+        if (direction.equals("up")) {
+            v = getHeight();
+        }
+        if (direction.equals("down")) {
+            v = -getHeight();
+        }
+        int a = 0;
         while (a<all.length){
             List object = getObjects(all[a]);
             if (! object.isEmpty()){
@@ -47,11 +54,21 @@ public class RandomlyGeneratingDungeon extends World
     
     public void act(){
         paintOrder();
-        if (tileset==0)setBackground(new GreenfootImage("GreenTile.png"));
-        if (tileset==1)setBackground(new GreenfootImage("BlueTile.png"));
-        if (tileset==2)setBackground(new GreenfootImage("AquaTile.png"));
-        if (tileset==3)setBackground(new GreenfootImage("YellowTile.png"));
-        if (tileset==4)setBackground(new GreenfootImage("GreyTile.png"));
+        if (tileset == 0) {
+            setBackground(new GreenfootImage("GreenTile.png"));
+        }
+        if (tileset == 1) {
+            setBackground(new GreenfootImage("BlueTile.png"));
+        }
+        if (tileset == 2) {
+            setBackground(new GreenfootImage("AquaTile.png"));
+        }
+        if (tileset == 3) {
+            setBackground(new GreenfootImage("YellowTile.png"));
+        }
+        if (tileset == 4) {
+            setBackground(new GreenfootImage("GreyTile.png"));
+        }
     }
     
     public void testDungeon(){
@@ -102,7 +119,7 @@ public class RandomlyGeneratingDungeon extends World
     */
     int tileset = 0;
     public void changeTileSet(int i){
-        tileset=i;
+        tileset = i;
     }
     
     //Dungeon Manipulation methods
@@ -126,50 +143,56 @@ public class RandomlyGeneratingDungeon extends World
                 }
             }
             object++;
-            i=0;
+            i = 0;
         }
     }
     public void generateDungeonEnemies(){
-        
+            
     }
     
     //Dungeon Tile Methods
     
     public void block(int x, int y, boolean movable, int event, int keypos){
-        if (x*40+20<0||x*40+20>getWidth()||getHeight()-y*40-20<0||getHeight()-y*40-20>getHeight()){
-            System.out.println("ERROR: BLOCK AT ("+x+","+y+") IS OUT OF WORLD RANGE"); return;
+        if (x*40+20<0 || x*40+20>getWidth() || getHeight()-y*40-20<0 || getHeight()-y*40-20>getHeight()){
+            System.out.println("ERROR: BLOCK AT ("+x+","+y+") IS OUT OF WORLD RANGE"); 
+            return;
         }
         addObject(new Block(movable,event,keypos),x*40+20,getHeight()-y*40-20);
     }
     public void block(int x, int y, boolean movable, int event){
-        if (x*40+20<0||x*40+20>getWidth()||getHeight()-y*40-20<0||getHeight()-y*40-20>getHeight()){
-            System.out.println("ERROR: BLOCK AT ("+x+","+y+") IS OUT OF WORLD RANGE"); return;
+        if (x*40+20<0 || x*40+20>getWidth() || getHeight()-y*40-20<0 || getHeight()-y*40-20>getHeight()){
+            System.out.println("ERROR: BLOCK AT ("+x+","+y+") IS OUT OF WORLD RANGE"); 
+            return;
         }
         addObject(new Block(movable,event,-1),x*40+20,getHeight()-y*40-20);
     }
     public void block(int x, int y, boolean movable){
-        if (x*40+20<0||x*40+20>getWidth()||getHeight()-y*40-20<0||getHeight()-y*40-20>getHeight()){
-            System.out.println("ERROR: BLOCK AT ("+x+","+y+") IS OUT OF WORLD RANGE"); return;
+        if (x*40+20<0 || x*40+20>getWidth() || getHeight()-y*40-20<0 || getHeight()-y*40-20>getHeight()) {
+            System.out.println("ERROR: BLOCK AT ("+x+","+y+") IS OUT OF WORLD RANGE"); 
+            return;
         }
         addObject(new Block(movable,0,-1),x*40+20,getHeight()-y*40-20);
     }
     public void block(int x, int y){
-        if (x*40+20<0||x*40+20>getWidth()||getHeight()-y*40-20<0||getHeight()-y*40-20>getHeight()){
-            System.out.println("ERROR: BLOCK AT ("+x+","+y+") IS OUT OF WORLD RANGE"); return;
+        if (x*40+20<0||x*40+20>getWidth() || getHeight()-y*40-20<0 || getHeight()-y*40-20>getHeight()){
+            System.out.println("ERROR: BLOCK AT ("+x+","+y+") IS OUT OF WORLD RANGE"); 
+            return;
         }
         addObject(new Block(false,0,-1),x*40+20,getHeight()-y*40-20);
     }
     //Liquids
     public void lava(int x, int y){
-        if (x*40+20<0||x*40+20>getWidth()||getHeight()-y*40-20<0||getHeight()-y*40-20>getHeight()){
-            System.out.println("ERROR: LAVA AT ("+x+","+y+") IS OUT OF WORLD RANGE"); return;
+        if (x*40+20<0||x*40+20>getWidth() || getHeight()-y*40-20<0 || getHeight()-y*40-20>getHeight()){
+            System.out.println("ERROR: LAVA AT ("+x+","+y+") IS OUT OF WORLD RANGE"); 
+            return;
         }
         addObject(new Lava(),x*40+20,getHeight()-y*40-20);
     }
     public void water(int x, int y){
-        if (x*40+20<0||x*40+20>getWidth()||getHeight()-y*40-20<0||getHeight()-y*40-20>getHeight()){
-            System.out.println("ERROR: WATER AT ("+x+","+y+") IS OUT OF WORLD RANGE"); return;
+        if (x*40+20<0||x*40+20>getWidth() || getHeight()-y*40-20<0 || getHeight()-y*40-20>getHeight()){
+            System.out.println("ERROR: WATER AT ("+x+","+y+") IS OUT OF WORLD RANGE");
+            return;
         }
-        addObject(new Water(),x*40+20,getHeight()-y*40-20);
+        addObject(new Water(), x*40+20,getHeight()-y*40-20);
     }
 }
