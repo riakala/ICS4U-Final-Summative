@@ -2,12 +2,21 @@ import greenfoot.*;
 
 public class Link extends Actor
 {
+   
+    GreenfootImage[] animationImage = new GreenfootImage[2]; 
+    int animationState;
     int xmove=0;
     int xmove2=0;
     int ymove=0;
     int ymove2=0;
     int scroll=0;
     int scrollTimer=0;
+    int animationTimer;
+    public Link() {
+        animationImage[0] = new GreenfootImage("mr.p.png");
+        animationImage[1] = new GreenfootImage("Mr.Plink right step - Copy.JPG");
+    }
+    
     public void act() 
     {
         //Methods
@@ -16,7 +25,6 @@ public class Link extends Actor
         }catch(IndexOutOfBoundsException e){}
         if (scroll==0){
             basicMoving();
-            //graphics();
             collisionDetection();
             if (getX()>=getWorld().getWidth()-1){scroll=1;}
             if (getX()<=0){scroll=2;}
@@ -47,17 +55,25 @@ public class Link extends Actor
         if (scroll!=0)return;
         int m=3; //Rate of cells that will be traveled
         //Change movement
-        if (Greenfoot.isKeyDown("a")&&ymove==0){xmove=-m; setRotation(270);}
-        if (Greenfoot.isKeyDown("d")&&ymove==0){xmove=m; setRotation(90);}
-        if (Greenfoot.isKeyDown("w")&&xmove==0){ymove=-m; setRotation(0);}
-        if (Greenfoot.isKeyDown("s")&&xmove==0){ymove=m; setRotation(180);}
+        if (Greenfoot.isKeyDown("a")&&ymove==0){xmove=-m; graphics();}
+        if (Greenfoot.isKeyDown("d")&&ymove==0){xmove=m; graphics();}
+        if (Greenfoot.isKeyDown("w")&&xmove==0){ymove=-m; graphics();}
+        if (Greenfoot.isKeyDown("s")&&xmove==0){ymove=m; graphics();}
         if (! Greenfoot.isKeyDown("a")&&! Greenfoot.isKeyDown("d")){xmove=0;}
         if (! Greenfoot.isKeyDown("w")&&! Greenfoot.isKeyDown("s")){ymove=0;}
     }
     static String direction="up";
     public void graphics()
     {
-        
+        animationTimer = (animationTimer+1)%20;
+        if (animationTimer == 0) {
+            setImage(animationImage[animationState]);
+            if (animationState == 1){
+                animationState = 0;
+            } else {
+                animationState = 1;
+            }
+        }
     }
     Class[] objects = {Wall.class,Block.class,Lava.class,Water.class};
     int collisionAmount=0;
