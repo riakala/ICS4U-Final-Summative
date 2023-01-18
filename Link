@@ -4,7 +4,11 @@ public class Link extends Actor
 {
    
     GreenfootImage[] animationImage = new GreenfootImage[2]; 
-    int animationState;
+    GreenfootImage[] walkRight = new GreenfootImage[10];
+    GreenfootImage[] walkLeft = new GreenfootImage[10];
+    GreenfootImage[] walkBack = new GreenfootImage[10];
+    GreenfootImage[] walkFront = new GreenfootImage[10];
+    int animationState = 0;
     int xmove=0;
     int xmove2=0;
     int ymove=0;
@@ -13,6 +17,24 @@ public class Link extends Actor
     int scrollTimer=0;
     int animationTimer;
     public Link() {
+        for (int i = 0; i < 10; i++){
+            walkRight[i] = new GreenfootImage("Plink_Right_Walk_" + (i+1) + ".png");
+            walkRight[i].scale(45,45);
+            walkLeft[i] = new GreenfootImage("Plink_Left_Walk_" + (i+1) + ".png");
+            walkLeft[i].scale(45,45);
+            walkBack[i] = new GreenfootImage("Plink_Backwards_Walk_" + (i+1) + ".png");
+            walkBack[i].scale(45,45);
+            walkFront[i] = new GreenfootImage("Plink_Forwards_Walk_" + (i+1) + ".png");
+            walkFront[i].scale(45,45);
+        }
+        GreenfootImage frontIdol = new GreenfootImage("Plink_Forwards_Idol.png");
+        frontIdol.scale(45,45);
+        GreenfootImage backIdol = new GreenfootImage("Plink_Backwards_Idol.png");
+        backIdol.scale(45,45);
+        GreenfootImage rightIdol = new GreenfootImage("Plink_Right_Idol.png");
+        rightIdol.scale(45,45);
+        GreenfootImage leftIdol = new GreenfootImage("Plink_Left_Idol.png");
+        leftIdol.scale(45,45);
         animationImage[0] = new GreenfootImage("mr.p.png");
         animationImage[1] = new GreenfootImage("Mr.Plink right step - Copy.JPG");
     }
@@ -55,23 +77,57 @@ public class Link extends Actor
         if (scroll!=0)return;
         int m=3; //Rate of cells that will be traveled
         //Change movement
-        if (Greenfoot.isKeyDown("a")&&ymove==0){xmove=-m; graphics();}
-        if (Greenfoot.isKeyDown("d")&&ymove==0){xmove=m; graphics();}
-        if (Greenfoot.isKeyDown("w")&&xmove==0){ymove=-m; graphics();}
-        if (Greenfoot.isKeyDown("s")&&xmove==0){ymove=m; graphics();}
+        if (Greenfoot.isKeyDown("a")&&ymove==0){xmove=-m; graphics(4);}
+        if (Greenfoot.isKeyDown("d")&&ymove==0){xmove=m; graphics(3);}
+        if (Greenfoot.isKeyDown("w")&&xmove==0){ymove=-m; graphics(2);}
+        if (Greenfoot.isKeyDown("s")&&xmove==0){ymove=m; graphics(1);}
         if (! Greenfoot.isKeyDown("a")&&! Greenfoot.isKeyDown("d")){xmove=0;}
         if (! Greenfoot.isKeyDown("w")&&! Greenfoot.isKeyDown("s")){ymove=0;}
     }
     static String direction="up";
-    public void graphics()
+    public void graphics(int direction) // Front 1, back 2, right 3, left 4
     {
-        animationTimer = (animationTimer+1)%20;
-        if (animationTimer == 0) {
-            setImage(animationImage[animationState]);
-            if (animationState == 1){
-                animationState = 0;
-            } else {
-                animationState = 1;
+        animationTimer = (animationTimer+1)%5;
+        switch (direction){
+            case 1 : // Forwards
+                if (animationTimer == 0) {
+                setImage(walkFront[animationState]);
+                if (animationState >= 9){
+                    animationState = 0;
+                } else {
+                    animationState++;
+                }
+            }
+            break;
+            case 2 : // Backwards
+            if (animationTimer == 0) {
+                setImage(walkBack[animationState]);
+                if (animationState >= 9){
+                    animationState = 0;
+                } else {
+                    animationState++;
+                }
+            }
+            break;
+            case 3 : // Right
+            if (animationTimer == 0) {
+                setImage(walkRight[animationState]);
+                if (animationState >= 9){
+                    animationState = 0;
+                } else {
+                    animationState++;
+                }
+            }
+            break;
+            case 4 : // Left
+            if (animationTimer == 0) {
+                setImage(walkLeft[animationState]);
+                if (animationState >= 9){
+                    animationState = 0;
+                } else {
+                    animationState++;
+                }
+                break;
             }
         }
     }
