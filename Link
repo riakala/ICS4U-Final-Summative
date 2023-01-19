@@ -19,24 +19,22 @@ public class Link extends Actor
     public Link() {
         for (int i = 0; i < 10; i++){
             walkRight[i] = new GreenfootImage("Plink_Right_Walk_" + (i+1) + ".png");
-            walkRight[i].scale(45,45);
+            walkRight[i].scale(40,40);
             walkLeft[i] = new GreenfootImage("Plink_Left_Walk_" + (i+1) + ".png");
-            walkLeft[i].scale(45,45);
+            walkLeft[i].scale(40,40);
             walkBack[i] = new GreenfootImage("Plink_Backwards_Walk_" + (i+1) + ".png");
-            walkBack[i].scale(45,45);
+            walkBack[i].scale(40,40);
             walkFront[i] = new GreenfootImage("Plink_Forwards_Walk_" + (i+1) + ".png");
-            walkFront[i].scale(45,45);
+            walkFront[i].scale(40,40);
         }
         GreenfootImage frontIdol = new GreenfootImage("Plink_Forwards_Idol.png");
-        frontIdol.scale(45,45);
+        frontIdol.scale(40,40);
         GreenfootImage backIdol = new GreenfootImage("Plink_Backwards_Idol.png");
-        backIdol.scale(45,45);
+        backIdol.scale(40,40);
         GreenfootImage rightIdol = new GreenfootImage("Plink_Right_Idol.png");
-        rightIdol.scale(45,45);
+        rightIdol.scale(40,40);
         GreenfootImage leftIdol = new GreenfootImage("Plink_Left_Idol.png");
-        leftIdol.scale(45,45);
-        animationImage[0] = new GreenfootImage("mr.p.png");
-        animationImage[1] = new GreenfootImage("Mr.Plink right step - Copy.JPG");
+        leftIdol.scale(40,40);
     }
     
     public void act() 
