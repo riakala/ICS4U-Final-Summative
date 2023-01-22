@@ -8,8 +8,6 @@ Things we want to add:
 - Health (Ria)
 - Sound effects (Stella)
 - Boss room 
-- mr. P audio clip at end 
 
 
-https://www.buzzfeed.com/angelicaamartinez/soul-aesthetic-personality-quiz
 
