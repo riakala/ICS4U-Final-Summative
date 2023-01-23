@@ -65,7 +65,7 @@ public class Block extends Actor
         
         /**This checks if there is an object in the blocks way when it moves*/
         
-        Class[] blocks = {Wall.class,Block.class,Lava.class,Water.class,Water.class}; //All classes in this array can prevent the block from moving
+        Class[] blocks = {Wall.class,Block.class,/*Lava.class,Water.class,Water.class*/}; //All classes in this array can prevent the block from moving
         while (collisionAmount<blocks.length){
             //Down check
             for (int i=-getImage().getWidth()/2+2; i<getImage().getWidth()/2-2; i++){
@@ -89,11 +89,41 @@ public class Block extends Actor
             }
             collisionAmount++;
         }
+        
+        collisionAmount = 0;
+        Class[] liquids = {Water.class,Lava.class};
+        while (collisionAmount<blocks.length) {
+            //Down check
+            for (int i=-getImage().getWidth()/2+2; i<getImage().getWidth()/2-2; i++){
+                Actor object = getOneObjectAtOffset(i, getImage().getHeight(),liquids[collisionAmount]);
+                if (object!=null&&ymove>0){meetLiquid();}
+            }
+            //Up check
+            for (int i=-getImage().getWidth()/2+2; i<getImage().getWidth()/2-2; i++){
+                Actor object = getOneObjectAtOffset(i, -getImage().getHeight(),liquids[collisionAmount]);
+                if (object!=null&&ymove<0){meetLiquid();}
+            }
+            //Left check
+            for (int i=-getImage().getHeight()/2+2; i<getImage().getHeight()/2-2; i++){
+                Actor object = getOneObjectAtOffset(-getImage().getWidth(), i,liquids[collisionAmount]);
+                if (object!=null&&xmove<0){meetLiquid();}
+            }
+            //Right check
+            for (int i=-getImage().getHeight()/2+2; i<getImage().getHeight()/2-2; i++){
+                Actor object = getOneObjectAtOffset(getImage().getWidth(), i,liquids[collisionAmount]);
+                if (object!=null&&xmove>0){meetLiquid();}
+            }
+            collisionAmount++;
+        }
         if (xmove!=0||ymove!=0){move=false; moves=20;} //Moves is the amount of times the block will move before stopping
     }
     public void negateMoving(){
         xmove=0;
         ymove=0;
+    }
+    
+    public void meetLiquid() {
+        moves = 0;
     }
     
     public void key(){
