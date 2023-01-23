@@ -39,10 +39,22 @@ public class RandomlyGeneratingDungeon extends World
         addObject(new Wall(getWidth(), 40), 1020, 20); // top
         addObject(new Wall(getWidth(), 40), 1020, 460); // bottom
         //addObject(new Candle(), 100, 100);
-        testDungeon();
+        //testDungeon();
+        generateKeyRoom():
        
         paintOrder();
     }
+    
+     public void generateKeyRoom(){
+        addObject(new Key(), 250, -200);
+        addObject(new Key(), 250, -600);
+        addObject(new Key(), 1000, 250);
+        addObject(new Door(), 800, -600);
+        addObject(new Door(), 900, -600);
+        addObject(new Door(), 1000, -600);
+        //addObject(new Door(), 1200, -600);
+    }
+    
     Class[] all = {Wall.class,Key.class,Block.class,Lava.class,Water.class};
     public void scroll(String direction){
         int v = 0;
