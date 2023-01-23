@@ -1,0 +1,46 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+public class KeyRoom extends RandomlyGeneratingDungeon{
+    private int keysCollected = 0;
+    private Door door1, door2, door3, finalDoor;
+    private Key key1, key2, key3;
+    private boolean doorsOpen = false;
+
+    public KeyRoom()
+    {    
+        super();
+
+        key1 = new Key();
+        key2 = new Key();
+        key3 = new Key();
+        addObject(key1, 50, 50);
+        addObject(key2, 150, 150);
+        addObject(key3, 250, 250);
+
+        door1 = new Door();
+        door2 = new Door();
+        door3 = new Door();
+        finalDoor = new Door();
+        addObject(door1, 100, 100);
+        addObject(door2, 200, 200);
+        addObject(door3, 300, 300);
+        addObject(finalDoor, 400, 400);
+
+        addObject(new Link(), 50, 50);
+    }
+    public void act()
+    {
+        if (keysCollected == 3 && !doorsOpen)
+        {
+            doorsOpen = true;
+            door1.setOpen(true);
+            door2.setOpen(true);
+            door3.setOpen(true);
+        }
+    }
+
+    public void keyCollected()
+    {
+        keysCollected++;
+    }
+}
