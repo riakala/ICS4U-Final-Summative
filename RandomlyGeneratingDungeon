@@ -17,25 +17,33 @@ public class RandomlyGeneratingDungeon extends World
         addObject(new Wall(getWidth()/3, 40), 593, 20); // right half of the top wall main room
         addObject(new Wall(getWidth()*2,40),0,getHeight()-20); // bottom
         addObject(new Wall(40,getHeight()),20,getHeight()/2); // left
+
         // enemyRoomOne
         addObject(new Wall(getWidth()/2, 40), 170, -20); // left half of the bottom wall enemyOne room
         addObject(new Wall(getWidth()/3, 40), 593, -20); // right half of the bottom wall enemyOne room
         addObject(new Wall(getWidth()/2, 40), 170, -460); // left half of the top wall enemyOne room
         addObject(new Wall(getWidth()/3, 40), 593, -460); // right half of the top wall enemyOne room
-        addObject(new Wall(40,getHeight()*2),getWidth()-20,0); // right
+        addObject(new Wall(40,getHeight()*2),getWidth()-20,-200); // right
         addObject(new Wall(40,getHeight()*2),20,0); // left
         // enemyRoomTwo
         addObject(new Wall(getWidth()/2, 40), 170, -500); // left half of the bottom wall enemyTwo room
         addObject(new Wall(getWidth()/3, 40), 593, -500); // right half of the bottom wall enemyTwo room
         addObject(new Wall(getWidth()*2,40),getWidth(),-940); // top wall of enemyRoomTwo
         addObject(new Wall(40,getHeight()*2),20,-480); // left
-       
-        addObject(new Candle(), 100, 100);
+        // enemyRoomThree
+        addObject(new Wall(getWidth(), 40), 1020, -500); // bottom wall enemyThree room
+        addObject(new Wall(40,getHeight()*2),getWidth()+660,-440); // left
+        // side room
+        addObject(new Wall(40,getHeight()*2),getWidth()+20,-200); // right
+        addObject(new Wall(40,getHeight()*2),getWidth()*2-20,0); // right
+        addObject(new Wall(getWidth(), 40), 1020, 20); // top
+        addObject(new Wall(getWidth(), 40), 1020, 460); // bottom
+        //addObject(new Candle(), 100, 100);
         testDungeon();
        
         paintOrder();
     }
-    Class[] all = {Wall.class,Key.class,Block.class,Lava.class,Water.class, Candle.class};
+    Class[] all = {Wall.class,Key.class,Block.class,Lava.class,Water.class};
     public void scroll(String direction){
         int v = 0;
         int h = 0;
@@ -104,6 +112,7 @@ public class RandomlyGeneratingDungeon extends World
         lava(14,8);
         */
        
+        /*
         block(15,4);
         block(14,4);
         block(13,4);
@@ -115,7 +124,8 @@ public class RandomlyGeneratingDungeon extends World
         block(16,2);
         block(16,3);
         block(16,4);
-        
+        */
+       
         /*
         water(1,1);
         water(1,2);
@@ -164,7 +174,7 @@ public class RandomlyGeneratingDungeon extends World
         generateDungeonEnemies();
     }
     public void clearDungeonRoom(){
-        Class[] objects = {Block.class,Wall.class, Candle.class}; // List of objects that will be cleared
+        Class[] objects = {Block.class,Wall.class}; // List of objects that will be cleared
         int object = 0;
         int i = 0;
         while (object < objects.length){
